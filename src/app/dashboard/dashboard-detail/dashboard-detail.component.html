@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="mt-sm-2 ml-sm-2 mr-sm2">
+  <h4 style="display: inline-block;">Department Details</h4>
+  <a class="btn btn-primary right text-white" (click)="editState=true">Edit</a>
+</div>
+<hr>
+<div class="container mb-sm-5">
+  <div *ngIf = "department" [class.d-none]="editState">
+    <h5>Deprtment Name: {{department.name}}</h5>
+    <h5 >HOD: {{department.hod}}</h5>
+    <h5>Faculty Count: {{department.fcount}}</h5>
+    <h5>Student Count: {{department.scount}}</h5>
+  </div>
+  <form *ngIf = "department" id="form" [class.d-none]="!editState" #f=ngForm>
+    <div class="form-group row">
+      <label for="dname" class="col-sm-2 col-form-label">Department Name</label>
+      <div class="col-sm-10">
+        <input name="name" type="text" class="form-control" id="dname" placeholder="{{department.name}}" ngModel [(ngModel)]="newDep.name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="hod" class="col-sm-2 col-form-label">HOD</label>
+      <div class="col-sm-10">
+        <input name="hod" type="text" class="form-control" id="hod" placeholder="{{department.hod}}" ngModel [(ngModel)]="newDep.hod">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fcount" class="col-sm-2 col-form-label">Faculty Count</label>
+      <div class="col-sm-10">
+        <input name="fcount" type="text" class="form-control" id="fcount" placeholder="{{department.fcount}}" ngModel [(ngModel)]="newDep.fcount">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="scount" class="col-sm-2 col-form-label">Student Count</label>
+      <div class="col-sm-10">
+        <input name="scount" type="text" class="form-control" id="scount" placeholder="{{department.scount}}" ngModel [(ngModel)]="newDep.scount">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-10 col-sm-1">
+        <button type="reset" class="btn btn-primary" (click)="cancel()">Cancel</button>
+      </div>
+      <div class="offset-sm col-sm-1">
+        <button type="submit" class="btn btn-primary"(click)="updateDepartment()">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="mt-sm-2 ml-sm-2 mr-sm2">
+  <h4 style="display: inline-block;">Courses</h4>
+  <a class="btn btn-primary right text-white">Add Courses</a>
+</div>
+<hr>
+<div class="container">
+  <div *ngFor="let course of courses">
+    <h5 style="display: inline-block;" class="mr-sm-1">{{course.name}}</h5>
+    <span *ngFor="let num of [1,2,3,4,5]" class="fa fa-star" [class.checked]="num<course.stars"></span>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container" style="margin-top:2%">
+  <form id="form" [formGroup]="myform">
+    <div class="form-group row">
+      <label for="apt" class="col-sm-2 col-form-label">Appartment/House No.</label>
+      <div class="col-sm-10">
+        <input name="apt" type="text" class="form-control" id="apt" placeholder="{{user.apt}}" formControlName="apt">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="st" class="col-sm-2 col-form-label">Street</label>
+      <div class="col-sm-10">
+        <input name="street" type="text" class="form-control" id="st" placeholder="{{user.street}}" formControlName="street">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="city" class="col-sm-2 col-form-label">City</label>
+      <div class="col-sm-10">
+        <input name="city" type="text" class="form-control" id="city" placeholder="{{user.city}}" formControlName="city">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Country</label>
+      <div class="col-sm-10">
+        <select class="form-control" formControlName="country">
+          <option>Default select</option><option>Default select2</option><option>Default select3</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-10 col-sm-1">
+        <button type="reset" class="btn btn-primary">Cancel</button>
+      </div>
+      <div class="offset-sm col-sm-1">
+        <button type="submit" class="btn btn-primary" (click)="next()">Finish</button>
+      </div>
+    </div>
+  </form>
+</div>
