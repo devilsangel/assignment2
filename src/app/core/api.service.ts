@@ -30,11 +30,15 @@ export class ApiService {
   	}
 
   	updateDepartment(department:Department):Observable<any>{
-  		return this.httpClient.put('http://192.168.64.2/api/api.php/departments/1', JSON.stringify(department), httpOptions);
+  		return this.httpClient.put(this.ip+'api/api.php/departments/'+department.id, JSON.stringify(department), httpOptions);
   	}
 
   	getCourses(department:Department):Observable<Course[]>{
   		return this.httpClient.get<Course[]>(this.ip+"api/courses.php/?dep="+department.id);
 
   	}
+
+    updateUser(user:User):Observable<any>{
+      return this.httpClient.put(this.ip+'api/api.php/users/'+user.id, JSON.stringify(user), httpOptions);
+    }
 }

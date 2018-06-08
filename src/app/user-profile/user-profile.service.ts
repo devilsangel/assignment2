@@ -8,7 +8,7 @@ import { User } from '../models/User';
 })
 export class UserProfileService {
 	user:User;
-  constructor() { this.user = new User();}
+  constructor(private apiService:ApiService, private authService:AuthService) { this.user = new User();}
 
   setPersonal(user:User){
   	this.user.setPersonal(user);
@@ -21,5 +21,9 @@ export class UserProfileService {
   }
   getUser():User{
   	return this.user;
+  }
+  updateUser(){
+  	this.user.id = this.authService.getLoggedInUser().id;
+  	this.apiService.updateUser(this.user).subscribe((num)=>{{this.authService.login(this.user)}});
   }
 }

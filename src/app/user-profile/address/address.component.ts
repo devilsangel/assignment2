@@ -26,6 +26,7 @@ export class AddressComponent implements OnInit {
   next(){
   	this.user = this.myform.value;
   	this.userProfileService.setAddress(this.user);
+  	this.userProfileService.updateUser();
   	// console.log(this.userProfileService.user);
   	this.router.navigate(["/dashboard"]);
   }
