@@ -41,4 +41,8 @@ export class ApiService {
     updateUser(user:User):Observable<any>{
       return this.httpClient.put(this.ip+'api/api.php/users/'+user.id, JSON.stringify(user), httpOptions);
     }
+
+    searchCourses(key:string){
+      return this.httpClient.get<Course[]>(this.ip+"api/courses.php/?key="+key);
+    }
 }

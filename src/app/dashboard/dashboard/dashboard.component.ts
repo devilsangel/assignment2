@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   	}
   	sort(){
   		this.departmentShow = this.departments.sort((dep1, dep2)=>{
-  			return dep1.name>dep2.name? -1 : 1;
+  			return dep1.name<dep2.name? -1 : 1;
   		});
   	}
   	getDepartments(){
