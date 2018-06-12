@@ -4,7 +4,7 @@ import { AuthService } from '../../core/auth.service';
 import { User } from '../../models/User';
 import { Router } from '@angular/router';
 import { UserProfileService } from '../user-profile.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-personal',
@@ -13,11 +13,16 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class PersonalComponent implements OnInit {
 	user:User;
+  invalid=false;
 	myform = new FormGroup({
         fname: new FormControl(),
         lname: new FormControl(),
-        email: new FormControl(),
-        password: new FormControl(),
+        email: new FormControl('', [ 
+            Validators.required,
+            Validators.pattern("[^ @]*@[^ @]*") 
+        ]),
+        password: new FormControl('', [
+            Validators.minLength(4)]),
         gender: new FormControl()
     });
   constructor(private authService:AuthService, private router:Router, private userProfileService:UserProfileService) { }
@@ -25,9 +30,13 @@ export class PersonalComponent implements OnInit {
   	this.user = this.authService.getLoggedInUser()
   }
   next(){
-  	this.user = this.myform.value;
-  	this.userProfileService.setPersonal(this.user);
-  	this.router.navigate(["/profile/education"]);
+    if(this.myform.valid){
+    	this.user = this.myform.value;
+    	this.userProfileService.setPersonal(this.user);
+    	this.router.navigate(["/profile/education"]);
+    }else{
+      this.invalid =true;
+    }
   }
   ngOnInit() {
   	this.getUser();
