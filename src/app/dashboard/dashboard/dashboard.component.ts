@@ -4,7 +4,7 @@ import { Department } from '../../models/Department';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
 	departments:Department[];
@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
     	this.apiService.getAllDepartments().subscribe((departments)=>{
     		this.departments = departments;
     		this.departmentShow = departments;
+        console.log(this.departments);
     	});
   	}
  	ngOnInit() {

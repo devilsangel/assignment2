@@ -1,0 +1,15 @@
+<div class="row" *ngFor="let dep of departments;" style="margin:1%">
+    <div class="col-sm-12">
+      <div class="card bg-light">
+        <div class="card-header" (click)="dep.show=!dep.show">
+          {{dep.name}}
+        </div>
+        <div class="card-body" [class.d-none]="dep.show">
+          <h5 class="card-title">Head of Department: {{dep.hod}}</h5>
+          <p class="card-text">Faculty Count: {{dep.fcount}}</p>
+          <p class="card-text">Student Count: {{dep.scount}}</p>
+          <a routerLink="/department/{{dep.id}}" class="btn btn-info offset-sm-10">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>

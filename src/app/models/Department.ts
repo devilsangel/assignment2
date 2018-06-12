@@ -4,4 +4,5 @@
 	hod:string;
 	fcount:number;
 	scount:number;
+	show:boolean;
 }

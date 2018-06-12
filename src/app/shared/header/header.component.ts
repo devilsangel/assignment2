@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from '../../core/api.service';
 import { Course } from '../../models/Course';
 import { Router } from '@angular/router';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-header',
@@ -9,11 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('hello1') popup:PopupComponent;
 	show:boolean=false;
 	key:string;
 	courses:Course[];
   constructor(private apiService:ApiService, private router:Router) { }
-
   ngOnInit() {
   }
 
@@ -25,6 +26,6 @@ export class HeaderComponent implements OnInit {
   	});
   }
   toggleModal(){
-  	this.show = !this.show;
+    this.popup.toggleModal();
   }
 }
