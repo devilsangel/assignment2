@@ -1,4 +1,4 @@
-import { Input, Component, OnInit } from '@angular/core';
+import { Input, Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -6,8 +6,18 @@ import { Input, Component, OnInit } from '@angular/core';
   styleUrls: ['./rating.component.css']
 })
 export class RatingComponent implements OnInit {
+	countVal=0;
+	@Output() counterChange = new EventEmitter();
 	@Input() isInput:boolean;
-	@Input() count:number;
+	@Input()
+	  get count() {
+	    return this.countVal;
+	  }
+	  
+	  set count(val) {
+	    this.countVal = val;
+	    this.counterChange.emit(this.countVal);
+	  }
   constructor() { }
 
   ngOnInit() {
@@ -15,7 +25,7 @@ export class RatingComponent implements OnInit {
   }
   setCount(num){
   	if(this.isInput){
-  		this.count = num+1;
+  		this.count = num;
   	}
   }
 }

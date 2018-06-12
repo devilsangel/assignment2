@@ -10,7 +10,7 @@ import { PopupComponent } from '../popup/popup.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @ViewChild('hello1') popup:PopupComponent;
+  @ViewChild(PopupComponent) popup:PopupComponent;
 	show:boolean=false;
 	key:string;
 	courses:Course[];
@@ -24,6 +24,10 @@ export class HeaderComponent implements OnInit {
   		this.courses = courses
   		this.toggleModal();
   	});
+  }
+  loadDepartment(id:number){
+    this.toggleModal();
+    this.router.navigate(["/department/"+id]);
   }
   toggleModal(){
     this.popup.toggleModal();

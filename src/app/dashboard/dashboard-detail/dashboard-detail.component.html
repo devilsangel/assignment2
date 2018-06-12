@@ -5,13 +5,13 @@
 </div>
 <hr>
 <div class="container mb-sm-5">
-  <div *ngIf = "department" [class.d-none]="editState">
+  <div *ngIf="department" [class.d-none]="editState">
     <h5>Deprtment Name: {{department.name}}</h5>
-    <h5 >HOD: {{department.hod}}</h5>
+    <h5>HOD: {{department.hod}}</h5>
     <h5>Faculty Count: {{department.fcount}}</h5>
     <h5>Student Count: {{department.scount}}</h5>
   </div>
-  <form *ngIf = "department" id="form" [class.d-none]="!editState" #f=ngForm>
+  <form *ngIf="department" id="form" [class.d-none]="!editState" #f=ngForm>
     <div class="form-group row">
       <label for="dname" class="col-sm-2 col-form-label">Department Name</label>
       <div class="col-sm-10">
@@ -41,7 +41,7 @@
         <button type="reset" class="btn btn-primary" (click)="cancel()">Cancel</button>
       </div>
       <div class="offset-sm col-sm-1">
-        <button type="submit" class="btn btn-primary"(click)="updateDepartment()">Submit</button>
+        <button type="submit" class="btn btn-primary" (click)="updateDepartment()">Submit</button>
       </div>
     </div>
   </form>
@@ -61,9 +61,20 @@
   <span class="popup-title">Course Details</span>
   <form class="popup-body" id="form">
     <div class="form-group row">
-      <label for="fname" class="col-sm-2 col-form-label">First Name</label>
+      <label for="cname" class="col-sm-2 col-form-label">Course Name</label>
       <div class="col-sm-10">
-        <input name="firstName" type="text" class="form-control" id="fname">
+        <input name="name" type="text" class="form-control" id="cname" [(ngModel)]="newCourse.name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="cname" class="col-sm-2 col-form-label">Rating</label>
+      <div class="col-sm-10">
+            <app-rating [count]="newCourse.stars" (counterChange)="newCourse.stars = $event" [isInput]="true"></app-rating>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-9 col-sm-1">
+        <button type="submit" class="btn btn-primary" (click)="addNewCourse()">Submit</button>
       </div>
     </div>
   </form>

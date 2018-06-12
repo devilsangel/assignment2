@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-declare var $ :any;
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import {NgbModal, ModalDismissReasons,NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-popup',
@@ -7,12 +7,19 @@ declare var $ :any;
   styleUrls: ['./popup.component.css']
 })
 export class PopupComponent implements OnInit {
-  constructor() { }
+	@ViewChild('content') ref:ElementRef;
+	modalRef:NgbModalRef;
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {	
   	// $('#modal').show();
   }
   toggleModal(){
-  	$('modal').toggle();
+  	if(this.modalRef){
+  		this.modalRef.close();
+  		this.modalRef = null;
+  	}else{
+  		this.modalRef = this.modalService.open(this.ref, {});
+  	}
   }
 }

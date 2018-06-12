@@ -10,6 +10,8 @@ import { LoginModule } from './login/login.module'
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserProfileModule } from './user-profile/user-profile.module'
 import { routing } from './app.routing';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +26,8 @@ import { routing } from './app.routing';
     RouterModule,
     routing,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

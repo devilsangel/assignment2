@@ -45,4 +45,7 @@ export class ApiService {
     searchCourses(key:string){
       return this.httpClient.get<Course[]>(this.ip+"api/courses.php/?key="+key);
     }
+    addCourse(course:Course):Observable<any>{
+      return this.httpClient.post(this.ip+"api/api.php/courses/",JSON.stringify(course),httpOptions);
+    }
 }

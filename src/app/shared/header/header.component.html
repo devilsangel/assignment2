@@ -21,7 +21,7 @@
   <span class="popup-title">Search Results</span>
   <div class="popup-body">
     <div *ngFor="let course of courses" class="card bg-light">
-      <div routerLink="/department/{{course.department}}" class="card-body">
+      <div (click)="loadDepartment(course.department)" class="card-body">
         <p class="card-text">{{course.name}}</p>
       </div>
     </div>

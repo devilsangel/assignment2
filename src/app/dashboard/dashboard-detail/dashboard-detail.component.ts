@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Department } from '../../models/Department';
 import { Course } from '../../models/Course';
 import { ApiService } from '../../core/api.service';
@@ -10,11 +10,12 @@ import { PopupComponent } from '../../shared/popup/popup.component';
   styleUrls: ['./dashboard-detail.component.css']
 })
 export class DashboardDetailComponent implements OnInit {
-  @ViewChildren("hello") popup:QueryList<PopupComponent>;
+  @ViewChild(PopupComponent) popup:PopupComponent;
 	department:Department;
 	editState:boolean=false;
 	newDep:Department;
 	courses:Course[];
+  newCourse:Course;
   	constructor(private apiService:ApiService, private route:ActivatedRoute, private router:Router) { }
 
   	getDepartment(id:string){
@@ -48,11 +49,20 @@ export class DashboardDetailComponent implements OnInit {
   		console.log(this.department);
   	}
     addCourses(){
-      this.popup.last.toggleModal();
+      this.popup.toggleModal();
+    }
+    addNewCourse(){
+      this.newCourse.department = this.department.id;
+      this.apiService.addCourse(this.newCourse).subscribe((num)=>{
+        this.courses.push(this.newCourse);
+        this.popup.toggleModal();
+      });
     }
   	ngOnInit() {
   		this.route.params.subscribe(params => {
 	        const id = <string>params['id'];
+          this.newCourse = new Course();
+          this.newCourse.stars = 0;
 	        if(id != null){
 	            this.getDepartment(id);
 	        }else{
